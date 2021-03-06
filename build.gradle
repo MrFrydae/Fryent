@@ -1,9 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '5.1.0'
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
+project.ext.lwjglVersion = "3.0.0a"
+
+mainClassName = "dev.frydae.fryent.Main"
+
+group 'dev.frydae'
+version 'dev-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -16,4 +22,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+shadowJar {
+    dependsOn(test)
+    archiveFileName = 'Fryent.jar'
 }
